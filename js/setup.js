@@ -22,6 +22,14 @@
     'green'
   ];
 
+  var FIREBALL_COLORS = [
+    '#ee4830',
+    '#30a8ee',
+    '#5ce6c0',
+    '#e848d5',
+    '#e6e848'
+  ];
+
   var isNumeric = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
   };
@@ -161,6 +169,11 @@
   var wizardEyesElem = document.querySelector('.wizard-eyes');
   wizardEyesElem.addEventListener('click', function () {
     wizardEyesElem.style = 'fill: ' + EYES_COLORS[getRandomInt(EYES_COLORS.length - 1)];
+  });
+
+  var wizardFireballElem = document.querySelector('.setup-fireball-wrap');
+  wizardFireballElem.addEventListener('click', function () {
+    wizardFireballElem.style = 'background-color: ' + FIREBALL_COLORS[getRandomInt(FIREBALL_COLORS.length - 1)];
   });
 
 })();
