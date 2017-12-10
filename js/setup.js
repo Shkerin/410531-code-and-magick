@@ -2,7 +2,25 @@
 
 (function () {
   var ENTER_KEYCODE = 13;
+
   var ESC_KEYCODE = 27;
+
+  var COATS_COLORS = [
+    'rgb(101, 137, 164)',
+    'rgb(241, 43, 107)',
+    'rgb(146, 100, 161)',
+    'rgb(56, 159, 117)',
+    'rgb(215, 210, 55)',
+    'rgb(0, 0, 0)'
+  ];
+
+  var EYES_COLORS = [
+    'black',
+    'red',
+    'blue',
+    'yellow',
+    'green'
+  ];
 
   var isNumeric = function (num) {
     return !isNaN(parseFloat(num)) && isFinite(num);
@@ -48,23 +66,6 @@
       'да Марья', 'Верон', 'Мирабелла', 'Вальц', 'Онопко', 'Топольницкая', 'Нионго', 'Ирвинг'
     ];
 
-    var COATS_COLORS = [
-      'rgb(101, 137, 164)',
-      'rgb(241, 43, 107)',
-      'rgb(146, 100, 161)',
-      'rgb(56, 159, 117)',
-      'rgb(215, 210, 55)',
-      'rgb(0, 0, 0)'
-    ];
-
-    var EYES_COLORS = [
-      'black',
-      'red',
-      'blue',
-      'yellow',
-      'green'
-    ];
-
     var wizards = [];
     for (var i = 0; i < count; i++) {
       wizards.push({
@@ -95,10 +96,10 @@
     labelElem.textContent = wizard.name;
 
     var coatElem = itemElem.querySelector('.wizard-coat');
-    coatElem.setAttribute('style', 'fill: ' + wizard.coatColor);
+    coatElem.style = 'fill: ' + wizard.coatColor;
 
     var eyesElem = itemElem.querySelector('.wizard-eyes');
-    eyesElem.setAttribute('style', 'fill: ' + wizard.eyesColor);
+    eyesElem.style = 'fill: ' + wizard.eyesColor;
   };
 
   var wizards = createWizards(4);
@@ -150,6 +151,11 @@
     if (evt.keyCode === ENTER_KEYCODE) {
       popupSetupHidden();
     }
+  });
+
+  var wizardCoatElem = document.querySelector('.wizard-coat');
+  wizardCoatElem.addEventListener('click', function () {
+    wizardCoatElem.style = 'fill: ' + COATS_COLORS[getRandomInt(COATS_COLORS.length - 1)];
   });
 
 })();
