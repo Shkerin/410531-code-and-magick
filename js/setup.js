@@ -158,4 +158,9 @@
     wizardCoatElem.style = 'fill: ' + COATS_COLORS[getRandomInt(COATS_COLORS.length - 1)];
   });
 
+  var wizardEyesElem = document.querySelector('.wizard-eyes');
+  wizardEyesElem.addEventListener('click', function () {
+    wizardEyesElem.style = 'fill: ' + EYES_COLORS[getRandomInt(EYES_COLORS.length - 1)];
+  });
+
 })();
