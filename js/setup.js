@@ -1,8 +1,11 @@
 'use strict';
 
 (function () {
-  var isNumeric = function (n) {
-    return !isNaN(parseFloat(n)) && isFinite(n);
+  var ENTER_KEYCODE = 13;
+  var ESC_KEYCODE = 27;
+
+  var isNumeric = function (num) {
+    return !isNaN(parseFloat(num)) && isFinite(num);
   };
 
   var getRandomInt = function (max) {
@@ -20,6 +23,13 @@
 
     var rand = Math.random() * (max - min + 1);
     return Math.floor(rand) + min;
+  };
+
+  var addClass = function (selector, className) {
+    var elem = document.querySelector(selector);
+    if (elem !== null) {
+      elem.classList.add(className);
+    }
   };
 
   var removeClass = function (selector, className) {
@@ -91,10 +101,55 @@
     eyesElem.setAttribute('style', 'fill: ' + wizard.eyesColor);
   };
 
-  removeClass('.setup', 'hidden');
-  removeClass('.setup-similar', 'hidden');
-
   var wizards = createWizards(4);
   fillingWizards(wizards);
+
+  var setupOpenElem = document.querySelector('.setup-open');
+  var setupCloseElem = document.querySelector('.setup-close');
+
+  var escKeydownHandler = function (evt) {
+    if (evt.keyCode === ESC_KEYCODE) {
+      popupSetupHidden();
+    }
+  };
+
+  var popupSetupShow = function () {
+    document.addEventListener('keydown', escKeydownHandler);
+
+    removeClass('.setup', 'hidden');
+    removeClass('.setup-similar', 'hidden');
+  };
+
+  var popupSetupHidden = function () {
+    var activeElem = document.activeElement;
+    if (activeElem && activeElem.classList.contains('setup-user-name')) {
+      return;
+    }
+
+    document.removeEventListener('keydown', escKeydownHandler);
+
+    addClass('.setup', 'hidden');
+    addClass('.setup-similar', 'hidden');
+  };
+
+  setupOpenElem.addEventListener('click', function () {
+    popupSetupShow();
+  });
+
+  setupCloseElem.addEventListener('click', function () {
+    popupSetupHidden();
+  });
+
+  setupOpenElem.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      popupSetupShow();
+    }
+  });
+
+  setupCloseElem.addEventListener('keydown', function (evt) {
+    if (evt.keyCode === ENTER_KEYCODE) {
+      popupSetupHidden();
+    }
+  });
 
 })();
