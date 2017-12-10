@@ -115,6 +115,9 @@
 
   var setupOpenElem = document.querySelector('.setup-open');
   var setupCloseElem = document.querySelector('.setup-close');
+  var wizardCoatElem = document.querySelector('.wizard-coat');
+  var wizardEyesElem = document.querySelector('.wizard-eyes');
+  var wizardFireballElem = document.querySelector('.setup-fireball-wrap');
 
   var escKeydownHandler = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
@@ -161,17 +164,14 @@
     }
   });
 
-  var wizardCoatElem = document.querySelector('.wizard-coat');
   wizardCoatElem.addEventListener('click', function () {
     wizardCoatElem.style = 'fill: ' + COATS_COLORS[getRandomInt(COATS_COLORS.length - 1)];
   });
 
-  var wizardEyesElem = document.querySelector('.wizard-eyes');
   wizardEyesElem.addEventListener('click', function () {
     wizardEyesElem.style = 'fill: ' + EYES_COLORS[getRandomInt(EYES_COLORS.length - 1)];
   });
 
-  var wizardFireballElem = document.querySelector('.setup-fireball-wrap');
   wizardFireballElem.addEventListener('click', function () {
     wizardFireballElem.style = 'background-color: ' + FIREBALL_COLORS[getRandomInt(FIREBALL_COLORS.length - 1)];
   });
