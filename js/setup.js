@@ -121,23 +121,23 @@
 
   var escKeydownHandler = function (evt) {
     if (evt.keyCode === ESC_KEYCODE) {
-      popupSetupHidden();
+      var activeElem = document.activeElement;
+      if (activeElem && activeElem.classList.contains('setup-user-name')) {
+        return;
+      }
+
+      hidePopupSetup();
     }
   };
 
-  var popupSetupShow = function () {
+  var showPopupSetup = function () {
     document.addEventListener('keydown', escKeydownHandler);
 
     removeClass('.setup', 'hidden');
     removeClass('.setup-similar', 'hidden');
   };
 
-  var popupSetupHidden = function () {
-    var activeElem = document.activeElement;
-    if (activeElem && activeElem.classList.contains('setup-user-name')) {
-      return;
-    }
-
+  var hidePopupSetup = function () {
     document.removeEventListener('keydown', escKeydownHandler);
 
     addClass('.setup', 'hidden');
@@ -145,22 +145,22 @@
   };
 
   setupOpenElem.addEventListener('click', function () {
-    popupSetupShow();
+    showPopupSetup();
   });
 
   setupCloseElem.addEventListener('click', function () {
-    popupSetupHidden();
+    hidePopupSetup();
   });
 
   setupOpenElem.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
-      popupSetupShow();
+      showPopupSetup();
     }
   });
 
   setupCloseElem.addEventListener('keydown', function (evt) {
     if (evt.keyCode === ENTER_KEYCODE) {
-      popupSetupHidden();
+      hidePopupSetup();
     }
   });
 
