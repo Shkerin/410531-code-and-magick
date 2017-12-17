@@ -1,6 +1,13 @@
 'use strict';
 
+/**
+ * Модуль для отрисовки волшебников на странице настроек пользователя
+ */
+
 (function () {
+  var utils = window.utils;
+  var consts = window.const;
+
   window.renderWizards = function (count) {
     var createWizards = function (countWizards) {
       var NAMES = [
@@ -13,13 +20,13 @@
 
       var wizards = [];
       for (var i = 0; i < countWizards; i++) {
-        var coatsColors = window.const.COATS_COLORS;
-        var eyesColors = window.const.EYES_COLORS;
+        var coatsColors = consts.COATS_COLORS;
+        var eyesColors = consts.EYES_COLORS;
         wizards.push({
-          'name': NAMES[window.utils.getRandomInt(NAMES.length - 1)] + ' ' +
-          SURNAMES[window.utils.getRandomInt(SURNAMES.length - 1)],
-          'coatColor': coatsColors[window.utils.getRandomInt(coatsColors.length - 1)],
-          'eyesColor': eyesColors[window.utils.getRandomInt(eyesColors.length - 1)]
+          'name': NAMES[utils.getRandomInt(NAMES.length - 1)] + ' ' +
+          SURNAMES[utils.getRandomInt(SURNAMES.length - 1)],
+          'coatColor': coatsColors[utils.getRandomInt(coatsColors.length - 1)],
+          'eyesColor': eyesColors[utils.getRandomInt(eyesColors.length - 1)]
         });
       }
 
