@@ -7,7 +7,7 @@
 
 (function () {
   var setup = document.querySelector('.setup');
-  var dialog = document.querySelector('.upload'); // TODO заменить на класс '.setup-user-pic'
+  var dialog = document.querySelector('.setup-user-pic');
   var setupCloseElem = document.querySelector('.setup-close');
   var saveCoords;
 
