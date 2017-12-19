@@ -11,6 +11,7 @@
   var setupCloseElem = document.querySelector('.setup-close');
   var saveCoords;
 
+  // Перетаскивание диалога
   dialog.addEventListener('mousedown', function (evt) {
     evt.preventDefault();
 
@@ -61,5 +62,42 @@
       setup.style.top = saveCoords.top + 'px';
     };
     setupCloseElem.addEventListener('click', setupCloseHandler);
+  });
+
+  // Перетаскивание предметов
+  var shopElem = document.querySelector('.setup-artifacts-shop');
+  var artifactsElem = document.querySelector('.setup-artifacts');
+  var draggedItem = null;
+  var styleDropZone = '2px dashed red';
+
+  shopElem.addEventListener('dragstart', function (evt) {
+    if (evt.target.tagName.toLowerCase() === 'img') {
+      draggedItem = evt.target;
+      evt.dataTransfer.setData('text/plain', evt.target.alt);
+      artifactsElem.style.outline = styleDropZone;
+    }
+  });
+
+  artifactsElem.addEventListener('dragenter', function (evt) {
+    evt.preventDefault();
+    evt.target.style.backgroundColor = 'yellow';
+    artifactsElem.style.outline = styleDropZone;
+  });
+
+  artifactsElem.addEventListener('dragleave', function (evt) {
+    evt.preventDefault();
+    evt.target.style.backgroundColor = '';
+  });
+
+  artifactsElem.addEventListener('drop', function (evt) {
+    evt.preventDefault();
+    evt.target.style.backgroundColor = '';
+    evt.target.appendChild(draggedItem);
+    artifactsElem.style.outline = '';
+  });
+
+  artifactsElem.addEventListener('dragover', function (evt) {
+    evt.preventDefault();
+    return false;
   });
 })();
