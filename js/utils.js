@@ -1,7 +1,7 @@
 'use strict';
 
 /**
- * Модуль для вспомогательных функций
+ * Модуль для вспомогательных функций.
  */
 
 (function () {
@@ -11,13 +11,13 @@
   window.utils = {
     isEscEvent: function (evt, action) {
       if (evt.keyCode === ESC_KEYCODE) {
-        action();
+        action(evt);
       }
     },
 
     isEnterEvent: function (evt, action) {
       if (evt.keyCode === ENTER_KEYCODE) {
-        action();
+        action(evt);
       }
     },
 
