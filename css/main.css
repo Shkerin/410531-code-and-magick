@@ -856,6 +856,7 @@ input[type=radio]:checked + .review-mark-label {
   margin: 0;
 
   position: absolute;
+  z-index: 1;
   left: 0;
   top: 0;
 }
@@ -869,8 +870,4 @@ input[type=radio]:checked + .review-mark-label {
 
   left: 0;
   top: 0;
-}
-
-.upload .setup-user-pic {
-  z-index: 1;
 }
