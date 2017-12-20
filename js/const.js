@@ -1,5 +1,9 @@
 'use strict';
 
+/**
+ * Модуль с глобальными константами.
+ */
+
 (function () {
   window.const = {
     COATS_COLORS: [

@@ -1,6 +1,13 @@
 'use strict';
 
+/**
+ * Модуль для работы со диалогом редактирования персонажа.
+ */
+
 (function () {
+  var utils = window.utils;
+  var consts = window.const;
+
   var setupOpenElem = document.querySelector('.setup-open');
   var setupCloseElem = document.querySelector('.setup-close');
   var wizardCoatElem = document.querySelector('.wizard-coat');
@@ -8,7 +15,7 @@
   var wizardFireballElem = document.querySelector('.setup-fireball-wrap');
 
   var escKeydownHandler = function (evt) {
-    window.utils.isEscEvent(evt, function () {
+    utils.isEscEvent(evt, function () {
       var activeElem = document.activeElement;
       if (activeElem && activeElem.classList.contains('setup-user-name')) {
         return;
@@ -21,15 +28,15 @@
   var showPopupSetup = function () {
     document.addEventListener('keydown', escKeydownHandler);
 
-    window.utils.removeClass('.setup', 'hidden');
-    window.utils.removeClass('.setup-similar', 'hidden');
+    utils.removeClass('.setup', 'hidden');
+    utils.removeClass('.setup-similar', 'hidden');
   };
 
   var hidePopupSetup = function () {
     document.removeEventListener('keydown', escKeydownHandler);
 
-    window.utils.addClass('.setup', 'hidden');
-    window.utils.addClass('.setup-similar', 'hidden');
+    utils.addClass('.setup', 'hidden');
+    utils.addClass('.setup-similar', 'hidden');
   };
 
   setupOpenElem.addEventListener('click', function () {
@@ -41,27 +48,27 @@
   });
 
   setupOpenElem.addEventListener('keydown', function (evt) {
-    window.utils.isEnterEvent(evt, showPopupSetup);
+    utils.isEnterEvent(evt, showPopupSetup);
   });
 
   setupCloseElem.addEventListener('keydown', function (evt) {
-    window.utils.isEnterEvent(evt, hidePopupSetup);
+    utils.isEnterEvent(evt, hidePopupSetup);
   });
 
   wizardCoatElem.addEventListener('click', function () {
-    var coatsColor = window.const.COATS_COLORS;
-    wizardCoatElem.style = 'fill: ' + coatsColor[window.utils.getRandomInt(coatsColor.length - 1)];
+    var coatsColor = consts.COATS_COLORS;
+    wizardCoatElem.style = 'fill: ' + coatsColor[utils.getRandomInt(coatsColor.length - 1)];
   });
 
   wizardEyesElem.addEventListener('click', function () {
-    var eyesColors = window.const.EYES_COLORS;
-    wizardEyesElem.style = 'fill: ' + eyesColors[window.utils.getRandomInt(eyesColors.length - 1)];
+    var eyesColors = consts.EYES_COLORS;
+    wizardEyesElem.style = 'fill: ' + eyesColors[utils.getRandomInt(eyesColors.length - 1)];
   });
 
   wizardFireballElem.addEventListener('click', function () {
-    var fireballColors = window.const.FIREBALL_COLORS;
+    var fireballColors = consts.FIREBALL_COLORS;
     wizardFireballElem.style = 'background-color: ' +
-      fireballColors[window.utils.getRandomInt(fireballColors.length - 1)];
+      fireballColors[utils.getRandomInt(fireballColors.length - 1)];
   });
 
   window.renderWizards(4);
