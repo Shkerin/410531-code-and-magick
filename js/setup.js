@@ -7,6 +7,7 @@
 (function () {
   var utils = window.utils;
   var consts = window.const;
+  var colorizeElement = window.colorizeElement;
 
   var setupOpenElem = document.querySelector('.setup-open');
   var setupCloseElem = document.querySelector('.setup-close');
@@ -55,20 +56,24 @@
     utils.isEnterEvent(evt, hidePopupSetup);
   });
 
+  var fillElement = function (element, color) {
+    element.style.fill = color;
+  };
+
+  var changeElementBackground = function (element, color) {
+    element.style.backgroundColor = color;
+  };
+
   wizardCoatElem.addEventListener('click', function () {
-    var coatsColor = consts.COATS_COLORS;
-    wizardCoatElem.style = 'fill: ' + coatsColor[utils.getRandomInt(coatsColor.length - 1)];
+    colorizeElement(wizardCoatElem, consts.COATS_COLORS, fillElement);
   });
 
   wizardEyesElem.addEventListener('click', function () {
-    var eyesColors = consts.EYES_COLORS;
-    wizardEyesElem.style = 'fill: ' + eyesColors[utils.getRandomInt(eyesColors.length - 1)];
+    colorizeElement(wizardEyesElem, consts.EYES_COLORS, fillElement);
   });
 
   wizardFireballElem.addEventListener('click', function () {
-    var fireballColors = consts.FIREBALL_COLORS;
-    wizardFireballElem.style = 'background-color: ' +
-      fireballColors[utils.getRandomInt(fireballColors.length - 1)];
+    colorizeElement(wizardFireballElem, consts.FIREBALL_COLORS, changeElementBackground);
   });
 
   window.renderWizards(4);

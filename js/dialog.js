@@ -60,7 +60,10 @@
 
       setup.style.left = saveCoords.left + 'px';
       setup.style.top = saveCoords.top + 'px';
+
+      setupCloseElem.removeEventListener('click', setupCloseHandler);
     };
+
     setupCloseElem.addEventListener('click', setupCloseHandler);
   });
 
